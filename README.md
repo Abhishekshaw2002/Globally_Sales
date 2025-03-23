@@ -13,6 +13,7 @@ Develop an Excel-based solution to:
 Automate consolidation and analysis of global sales data.
 Track KPIs: Monthly/Weekly Sales vs. Targets, Top 3 Customers, Top 10 Products, Sales by Region/Country.
 Create interactive dashboards for real-time decision-making.
+![intro](https://github.com/Abhishekshaw2002/Globally_Sales/blob/8ecb93349ffc430c529182859eed2e5e1fca4324/img_used/visualise.jpeg)
 
 #  Technology Used:
 Microsoft Excel: Core platform for data modeling, formulas, and dashboards.
