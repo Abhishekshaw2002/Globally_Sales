@@ -70,3 +70,6 @@ Use Power Query to pull live currency rates from APIs..
 #  Conclusions:
 The Excel solution streamlines global sales tracking, automating data consolidation and KPI calculations. Interactive dashboards enable teams to monitor targets, top customers/products, and regional performance efficiently. While Excel has limitations with scalability, it provides a cost-effective and user-friendly solution for immediate needs.
 
+# Screenshot:
+Include screenshots of Excel dashboard, data model and visualizations 
+
