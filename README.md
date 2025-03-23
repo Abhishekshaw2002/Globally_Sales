@@ -1,4 +1,5 @@
 # Globally_Sales
+![intro](https://github.com/Abhishekshaw2002/Globally_Sales/blob/42ed009c3b65b9a9f361eca9cd5290a47eea6853/img_used/sales.png)
 
 # Problem Statement:
 The global sales team struggles with fragmented data across multiple Excel files, leading to inefficiencies in tracking performance. Key challenges include:
