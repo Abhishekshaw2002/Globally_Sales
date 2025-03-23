@@ -1,77 +1,72 @@
 # Globally_Sales
 
 # Problem Statement:
-Global sales data is fragmented across regions and systems, leading to inefficiencies in tracking performance. Key challenges include:
-Lack of consolidated visibility into monthly/weekly sales targets and achievements.
-Difficulty identifying top-performing customers, products, and regions.
-Manual reporting delays and inconsistent currency/region formatting.
-Inability to monitor real-time progress toward targets.
+The global sales team struggles with fragmented data across multiple Excel files, leading to inefficiencies in tracking performance. Key challenges include:
+Manual consolidation of sales data from 50+ countries, resulting in errors and delays.
+Difficulty tracking monthly/weekly sales targets and identifying top customers/products.
+Lack of dynamic dashboards to visualize KPIs like regional performance or target achievement.
+Inconsistent formatting and currency conversions across regions.
 
 #  Objective:
-Develop a Power BI dashboard to:
+Develop an Excel-based solution to:
+Automate consolidation and analysis of global sales data.
 Track KPIs: Monthly/Weekly Sales vs. Targets, Top 3 Customers, Top 10 Products, Sales by Region/Country.
-Provide real-time insights for agile decision-making.
-Automate data integration and refresh for global teams.
+Create interactive dashboards for real-time decision-making.
 
 #  Technology Used:
-Power BI: Dashboard design and visualization.
-Power Query: Data transformation (currency conversion, time zones).
-DAX: Advanced calculations for targets and rankings.
-SQL Server/Cloud Storage (AWS S3): Centralized data repository.
-Power BI Gateway: Scheduled data refresh.
-Excel: Initial data validation.
+Microsoft Excel: Core platform for data modeling, formulas, and dashboards.
+Power Query (Excel): Data extraction, transformation, and loading (ETL).
+Power Pivot: Advanced data modeling (optional for large datasets).
+VBA Macros: Automation of repetitive tasks (e.g., data refresh).
+PivotTables/PivotCharts: Dynamic reporting.
 
 #  Scope of the Project:
-Consolidate sales data from 50+ countries.
-Visualize KPIs with interactive filters (e.g., region, product category).
-Compare actual sales against weekly/monthly targets.
+Integrate sales data from multiple Excel/CSV files.
+Calculate KPIs using formulas and PivotTables.
+Build dashboards with slicers for interactive filtering.
 
 # Concept Of the project:
-Data Sources: SQL (transaction data), Excel (targets), APIs (currency rates).
-ETL: Clean, standardize, and merge data (e.g., convert USD to local currencies).
-Data Model: Star schema with fact tables (Sales, Targets) and dimensions (Time, Product, Customer).
-Visualization: Maps, barcharts, and tables for KPIs.
-Deployment: Publish to Power BI Service with row-level security.
+Data Sources: Country-specific Excel files, CSV exports from ERP systems.
+ETL: Use Power Query to clean, merge, and standardize data (e.g., currency conversion).
+
+# Data Model:
+Tables: Sales (TransactionID, Date, Product, Customer, Revenue), Targets (Month/Week, Target Value).
+Formulas: SUMIFS, INDEX-MATCH, RANK.EQ for KPI calculations.
+Visualization: Dashboards with charts (e.g., bar graphs, maps via Power View) and slicers.
 
 #  Requirement Gathering:
 KPIs:
 Monthly/Weekly Sales vs. Targets | Top 3 Customers | Top 10 Products | Sales by Region/Country.
-Data Needs: Historical sales, target sheets, customer metadata, currency rates.
-User Preferences: Drill-down filters, export to PDF/Excel, mobile compatibility.
+Data Sources: Excel files (sales transactions, targets), CSV (customer metadata).
+User Preferences: Interactive filters (slicers), printable summary sheets, auto-refresh.
 
 #  Model Development:
-Tables:
-Fact: Sales (OrderID, Revenue, Quantity), Targets (Month/Week, Target Value).
-Dimension: Time (Month, Week), Customer, Product, Region, Country.
-Relationships: Link Sales to Time, Product, and Customer; Targets to Time.
-Data Cleaning: Standardized country names, aligned time zones, resolved currency mismatches.
+Raw Data Sheet: Consolidated sales data cleaned via Power Query.
+KPIs Sheet:
+Total Sales: =SUMIFS(Sales[Revenue], Sales[Month], "Jan-2024")
+Top 3 Customers:
+=INDEX(Customer[Name], MATCH(LARGE(SUMIFS(Sales[Revenue], Sales[Customer], Customer[Name]), 1),
+SUMIFS(Sales[Revenue], Sales[Customer], Customer[Name]), 0))
 
-# DAX Queries & Results:
-1) Total Sales = SUM(Sales[Revenue]) 
-   {This query shows total sales}
-2) Top Customers = TOPN(3, SUMMARIZE(Sales, Customer[Name], "Total", SUM(Sales[Revenue])), [Total], DESC)  
-   {This query shows top 3 customers}
-3) Weekly Achievement = DIVIDE([Total Sales], SUM(Targets[Weekly Target]), 0)
-   {This query shows Weekly Target Achievement}
-4) Top Products = TOPN(10, VALUES(Product[Name]), [Total Sales], DESC)
-   {This query shows Top 10 Products}
+Monthly Target Achievement: =Total_Sales / VLOOKUP(Month, Targets, 2, FALSE)
 
-# Data Refresh:
-Automated Refresh: Daily refresh via Power BI Gateway for SQL/cloud data.
-Manual Override: Refresh ad-hoc for urgent updates (e.g., new targets).
+# Dashboard Sheet:
+PivotTables for Sales by Region and Top 10 Products.
+Slicers for Country and Product Category.
+Conditional formatting for target variance.
 
 #  Challenges Faced:
-Time Zone Alignment: Harmonized timestamps using Power Query.
-Currency Conversion: Dynamically applied exchange rates using DAX.
-Data Volume: Optimized queries with aggregations for faster loading.
-Target Variance Calculation: Resolved mismatches between weekly/monthly granularity.
+Manual Errors: Resolved with Power Query for automated data cleaning.
+Large Datasets: Optimized using Excel Tables and Power Pivot.
+Dynamic Top N Lists: Used array formulas and RANK.EQ for flexibility.
+Currency Conversion: Created a lookup table with exchange rates.
 
 #  Future Improvement Scope:
-Integrate real-time CRM data (e.g., Salesforce).
-Add predictive analytics for target forecasting.
-Enable multi-language support for global users.
-Implement anomaly detection for sudden sales drops.
+Migrate to Power BI for real-time dashboards and better scalability.
+Integrate with SQL databases to replace CSV/Excel data sources.
+Develop VBA macros for auto-emailing reports.
+Use Power Query to pull live currency rates from APIs..
 
 #  Conclusions:
-The Power BI dashboard provides a unified view of global sales performance, enabling teams to track targets, identify top customers/products, and make data-driven decisions. Automated refreshes and role-based access ensure scalability and security.
+The Excel solution streamlines global sales tracking, automating data consolidation and KPI calculations. Interactive dashboards enable teams to monitor targets, top customers/products, and regional performance efficiently. While Excel has limitations with scalability, it provides a cost-effective and user-friendly solution for immediate needs.
 
