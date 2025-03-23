@@ -74,4 +74,4 @@ The Excel solution streamlines global sales tracking, automating data consolidat
 
 # Screenshot:
 Include screenshots of Excel dashboard, data model and visualizations 
-
+![intro](https://github.com/Abhishekshaw2002/Globally_Sales/blob/fb729c459d0dcffd59ca08cba4e6c12c6b6b58a4/img_used/Screenshot%202025-03-23%20122318.png)
